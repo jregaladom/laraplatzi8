@@ -58,4 +58,17 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
+
+
+    public function getAvatarAttribute()
+    {
+        //gravar
+        $email = md5($this->email);
+        return "https://www.gravatar.com/avatar/$email";
+    }
 }
